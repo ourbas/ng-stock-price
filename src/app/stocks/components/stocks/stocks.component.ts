@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/interval';
 
 import { StockValue } from '../../models/stock-value.model';
 import { StockApiService } from '../../services/stock-api.service';
@@ -16,11 +17,10 @@ export class StocksComponent implements OnInit {
   constructor(private api: StockApiService) {}
 
   ngOnInit() {
-    this.loadStocks();
+    Observable.interval(1000).subscribe(_ => this.loadStocks());
   }
 
   public loadStocks() {
-    // this.items$ = this.api.getDebug();
     this.items$ = this.api.getStocks(20);
   }
 }
