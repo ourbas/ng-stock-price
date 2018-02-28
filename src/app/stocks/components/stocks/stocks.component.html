@@ -1,0 +1,6 @@
+<button (click)="loadStocks()">
+  Reload</button>
+<div class="container">
+  <app-stock-table class="table-container" [data]="items$ | async"></app-stock-table>
+  <app-stock-chart class="chart-container" [data]="items$ | async"></app-stock-chart>
+</div>

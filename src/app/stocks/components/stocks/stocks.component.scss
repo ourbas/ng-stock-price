@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.table-container {
+  flex-grow: 1;
+  width: 400px;
+}
+.chart-container {
+  flex-grow: 3;
+  width: 400px;
+}

@@ -1,0 +1,11 @@
+<table>
+  <tr>
+    <th scope="col">CAC40</th>
+    <th scope="col">NASDAQ</th>
+  </tr>
+
+  <tr *ngFor="let element of data">
+    <td>{{element.stocks.NASDAQ | number : '1.5-5'}}</td>
+    <td>{{element.stocks.CAC40 | number : '1.5-5'}} </td>
+  </tr>
+</table>
