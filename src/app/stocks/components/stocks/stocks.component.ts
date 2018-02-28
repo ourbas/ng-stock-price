@@ -17,6 +17,7 @@ export class StocksComponent implements OnInit {
   constructor(private api: StockApiService) {}
 
   ngOnInit() {
+    // call loadStock every 1000ms
     Observable.interval(1000).subscribe(_ => this.loadStocks());
   }
 

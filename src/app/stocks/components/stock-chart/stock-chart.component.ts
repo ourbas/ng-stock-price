@@ -1,4 +1,10 @@
-import { Component, Input, OnInit, ChangeDetectionStrategy, OnChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  ChangeDetectionStrategy,
+  OnChanges,
+} from '@angular/core';
 
 import { StockValue } from '../../models/stock-value.model';
 import * as c3 from 'c3';
@@ -10,8 +16,8 @@ import * as c3 from 'c3';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StockChartComponent implements OnInit {
-
-  @Input() set data(data: StockValue[]) {
+  @Input()
+  set data(data: StockValue[]) {
     if (data != null) {
       this.cac40 = ['CAC40', ...data.map(sv => sv.stocks.CAC40)];
       this.nasdaq = ['NASDAQ', ...data.map(sv => sv.stocks.NASDAQ)];
@@ -22,20 +28,16 @@ export class StockChartComponent implements OnInit {
   private cac40;
   private nasdaq;
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit() {  }
+  ngOnInit() {}
 
   generateChart() {
     const chart = c3.generate({
       bindto: '#chart',
       data: {
-        columns: [
-          this.cac40,
-          this.nasdaq
-        ]
-      }
+        columns: [this.cac40, this.nasdaq],
+      },
     });
   }
 }
