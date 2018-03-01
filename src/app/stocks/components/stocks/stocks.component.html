@@ -1,6 +1,7 @@
-<button (click)="loadStocks()">
-  Reload</button>
+<button style="margin-bottom: 12px" (click)="toggleRefresh()">{{ isRunning ? "Pause" : "Run" }}</button>
+
 <div class="container">
-  <app-stock-table class="table-container" [data]="items$ | async"></app-stock-table>
-  <app-stock-chart class="chart-container" [data]="items$ | async"></app-stock-chart>
+
+  <app-stock-table class="table-container" [data]="items " [editMode]="!isRunning" (valueChanged)="updateStockValue($event)"></app-stock-table>
+  <app-stock-chart class=" chart-container " [data]="items "></app-stock-chart>
 </div>

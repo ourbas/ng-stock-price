@@ -1,11 +1,19 @@
 <table>
   <tr>
+    <th scope="col" class="col-index"></th>
     <th scope="col">CAC40</th>
     <th scope="col">NASDAQ</th>
   </tr>
 
-  <tr *ngFor="let element of data">
-    <td>{{element.stocks.NASDAQ | number : '1.5-5'}}</td>
-    <td>{{element.stocks.CAC40 | number : '1.5-5'}} </td>
+  <tr *ngFor="let item of data">
+    <td class="col-index"> {{item.index }}</td>
+    <td>
+      <input #cac40 type="number" [value]="item.stocks.CAC40 | number : '1.10-10'" (change)="onCac40Changed(item, cac40.value)"
+        [disabled]="!editMode">
+    </td>
+    <td>
+      <input #nasdaq type="number" [value]="item.stocks.NASDAQ | number : '1.10-10'" (change)="onNasdaqChanged(item, nasdaq.value)"
+        [disabled]="!editMode">
+    </td>
   </tr>
 </table>

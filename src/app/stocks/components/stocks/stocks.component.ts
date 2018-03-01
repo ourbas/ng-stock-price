@@ -12,16 +12,30 @@ import { StockApiService } from '../../services/stock-api.service';
   styleUrls: ['./stocks.component.scss'],
 })
 export class StocksComponent implements OnInit {
-  items$: Observable<StockValue[]>;
+  items: StockValue[];
+  isRunning = false;
 
   constructor(private api: StockApiService) {}
 
   ngOnInit() {
-    // call loadStock every 1000ms
-    Observable.interval(1000).subscribe(_ => this.loadStocks());
+    this.isRunning = true;
+    // call refresh every 1000ms
+    Observable.interval(1000).subscribe(_ => this.refreshStocks());
   }
 
-  public loadStocks() {
-    this.items$ = this.api.getStocks(20);
+  refreshStocks() {
+    if (this.isRunning) {
+      this.api.getStocks(20).subscribe(stocks => (this.items = stocks));
+    }
+  }
+
+  updateStockValue(value: StockValue) {
+    this.items = this.items.map(
+      item => (item.index === value.index ? value : item)
+    );
+  }
+
+  toggleRefresh() {
+    this.isRunning = !this.isRunning;
   }
 }
